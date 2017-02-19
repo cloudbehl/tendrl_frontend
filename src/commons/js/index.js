@@ -105,6 +105,10 @@
                         controller: "poolController",
                         controllerAs: "poolCntrl"
                     })
+                    .state("create-pool", {
+                        url: "/pool/create-pool",
+                        templateUrl: "/modules/pool/create-pool/create-pool.html",
+                    })
                     .state("add-inventory", {
                         url: "/add-inventory/:clusterId",
                         templateUrl: "/modules/add-inventory/add-inventory.html",
