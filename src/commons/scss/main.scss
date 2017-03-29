@@ -23,9 +23,10 @@
 @import "../../modules/login/login.scss";
 @import "../../modules/tasks/tasks.scss";
 @import "../../modules/tasks/task-detail/task-detail.scss";
-    
-.tendrl-app {
+@import "../../modules/home/create-cluster-modal/create-cluster-modal.scss";
+@import "../../modules/cluster/create-ceph-cluster/create-ceph-cluster.scss";
 
+.tendrl-app {
     .centered {
         position: fixed;
         top: 50%;

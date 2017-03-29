@@ -83,7 +83,7 @@
             //     url = config.baseUrl + "Get" + objectType +"List";
             // }
 
-            url = config.baseUrl + "Get" + objectType +"List";
+            url = config.baseUrl + "Get" + objectType +"List.json";
 
             // // For testing purpose
             // if(objectType === "trends-chart") {
