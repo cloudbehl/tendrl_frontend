@@ -19,10 +19,11 @@
 @import "../../commons/components/trends-chart/trends-chart.scss";
 @import "../../commons/components/full-aggregate-status-card/full-aggregate-status-card.scss";
 @import "../../modules/file-share/file-share-delete/file-share-delete.scss";
-@import "../../modules/file-share/create-file-share/create-file-share.scss";
+@import "../../modules/home/create-cluster-modal/create-cluster-modal.scss";
+@import "../../modules/cluster/create-ceph-cluster/create-ceph-cluster.scss";
+
 
 .tendrl-app {
-
     .centered {
         position: fixed;
         top: 50%;

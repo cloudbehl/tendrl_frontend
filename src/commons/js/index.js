@@ -1,7 +1,7 @@
 //# sourceURL=storage-management-plugin.js
 (function() {
 
-    var storageModule = angular.module("TendrlModule", ["ui.router","ui.bootstrap","frapontillo.bootstrap-switch","gridshore.c3js.chart","patternfly.charts", "patternfly.card"]);
+    var storageModule = angular.module("TendrlModule", ["ui.router", "ui.bootstrap", "frapontillo.bootstrap-switch","gridshore.c3js.chart", "patternfly.charts", "patternfly.card","patternfly.views", "smart-table"]);
 
     /* Setting up provider for getting config data */
     storageModule.provider("config", function () {
@@ -147,6 +147,18 @@
                         templateUrl: "/modules/file-share/create-file-share/create-file-share.html",
                         controller: "createFileShareController",
                         controllerAs: "createFileShareCntrl"
+                    })
+                    .state("create-ceph-cluster", {
+                        url: "/create-ceph-cluster",
+                        templateUrl: "/modules/cluster/create-ceph-cluster/create-ceph-cluster.html",
+                        controller: "createCephClusterController",
+                        controllerAs: "createCephClusterCntrl"
+                    })
+                    .state("create-gluster-cluster", {
+                        url: "/create-gluster-cluster",
+                        templateUrl: "/modules/cluster/create-cluster/create-cluster.html",
+                        controller: "createClusterController",
+                        controllerAs: "createClusterCntrl"
                     });
 
             });

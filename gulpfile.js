@@ -100,7 +100,8 @@ gulp.task("jsLibraries", function() {
     "node_modules/angular-patternfly/dist/angular-patternfly.js",
     "node_modules/c3-angular/c3-angular.min.js",
     "node_modules/angular-patternfly/node_modules/bootstrap-switch/dist/js/bootstrap-switch.js",
-    "node_modules/angular-bootstrap-switch/dist/angular-bootstrap-switch.js"
+    "node_modules/angular-bootstrap-switch/dist/angular-bootstrap-switch.js",
+    "node_modules/angular-smart-table/dist/smart-table.min.js"
   ])
   .pipe(uglify())
   .pipe(concat("libraries.js"))
