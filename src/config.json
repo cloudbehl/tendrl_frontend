@@ -1,5 +1,5 @@
 {
-	"baseUrl": "/api/1.0/",
+	"baseUrl": "/api/",
 	"refreshIntervalTime": 120,
 	"defaultThresholds" : {
 		"values" : {"warning": 60, "error": 90 },
