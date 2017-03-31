@@ -19,6 +19,7 @@
             i;
 
         vm.importCluster = importCluster;
+        vm.createCluster = createCluster;
         vm.goToClusterDetail = goToClusterDetail;
         vm.isDataLoading = true;
 
@@ -61,6 +62,11 @@
         function importCluster() {
             $state.go("import-cluster");
         }
+
+        function createCluster() {
+            $state.go("create-cluster");
+        }
+
 
         function _createClusterList() {
 
