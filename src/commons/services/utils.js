@@ -83,7 +83,8 @@
             //     url = config.baseUrl + "Get" + objectType +"List";
             // }
 
-            url = config.baseUrl + "Get" + objectType +"List.json";
+            //url = config.baseUrl + "Get" + objectType +"List";
+            url = "/api/Get" + objectType +"List.json";
 
             // // For testing purpose
             // if(objectType === "trends-chart") {
@@ -415,6 +416,26 @@
             };
 
             request = angular.copy(getTaskStatusRequest);
+            return $http(request).then(function (response) {
+                return response.data;
+            }, function() {
+                console.log("Error Occurred: while fetching getTaskLogs");
+                return null;
+            });
+        };
+
+        vm.getJournalConf = function() {
+            var url, getJournalConfRequest, request;
+
+            url = "/api/journal-details.json";
+            //url = "/api/GetStatus.json";
+
+            getJournalConfRequest = {
+                method: "GET",
+                url: url
+            };
+
+            request = angular.copy(getJournalConfRequest);
             return $http(request).then(function (response) {
                 return response.data;
             }, function() {
