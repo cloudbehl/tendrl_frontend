@@ -359,7 +359,11 @@
         // };
 
         function createClusterPostData(){
-            var postData = {},
+            var roleMapping = {
+                "Monitor": "ceph/mon",
+                "OSD Host": "ceph/osd"
+            },
+            postData = {},
             sds_parameters = {},
             node_configuration = {},
             conf_overrides =  {
@@ -371,26 +375,35 @@
             role = {
                 "Monitor": "ceph/mon",
                 "OSD Host": "osd"
-            }
+            },
+            network,
+            index,
+            index1;
 
             sds_parameters.name = vm.cephClusterName;
-            sds_parameters.public_network = vm.subnet;
-            sds_parameters.cluster_network = vm.subnet;
+            sds_parameters.public_network = vm.selectedPublicNetwork;
+            sds_parameters.cluster_network = vm.selectedClusterNetwork;
             sds_parameters.conf_overrides = conf_overrides;
             postData.sds_parameters = sds_parameters;
             postData.node_identifier = "ip";
 
-            for(var index = 0; index < vm.selectedNodes.length; index++){
-                var network = vm.selectedNodes[index].networks.eth0;
-                for(var index1=0; index1<network.ipv4.length; index1++){
-                    ip = network.ipv4[index1];
-                    ip.provisioning_ip = ip;
-                    ip.monitor_interface = network.interface;
-                    ip.role = role[vm.selectedRole[0]];
-                    node_configuration.push(ip)
+            for(index = 0; index < vm.availableHostForRole.length; index++){
+                for(index1=0; index1 < vm.availableHostForRole[index].ifIPMapping.length; index1++){
+                    network = vm.availableHostForRole[index].ifIPMapping[index1].ip;
+                    node_configuration[network] = {};
+                    node_configuration[network].role = roleMapping[vm.availableHostForRole[index].selectedRole];
+                    node_configuration[network].provisioning_ip = vm.availableHostForRole[index].ifIPMapping[index1].ip;
+                    if(vm.availableHostForRole[index].selectedRole === "OSD Host"){
+                        node_configuration[network].journal_size = vm.availableHostForRole[index].journalSize;
+                        node_configuration[network].journal_colocation = vm.availableHostForRole[index].selectedJournalConfigration === "Dedicated" ? false : true;
+                        node_configuration[network].storage_disks = vm.availableHostForRole[index].storage_disks;
+                    } else if(vm.availableHostForRole[index].selectedRole === "Monitor"){
+                        node_configuration[network].monitor_interface = vm.availableHostForRole[index].ifIPMapping[index1]["if"];
+                    }
                 }
             }
             postData.node_configuration = node_configuration;
+            console.log(postData);
         }
 
         function _createNodeConf() {
