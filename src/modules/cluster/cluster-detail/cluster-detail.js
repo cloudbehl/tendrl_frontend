@@ -70,8 +70,10 @@
                 .then(function(dashboardData) {
                     $interval.cancel(clusterDetailTimer);
                     vm.clusterData = dashboardData;
-                    vm.volOverviewData = vm.clusterData.sds_det.volume_status_wise_counts;
-                    vm.brickOverviewData = vm.clusterData.sds_det.brick_status_wise_counts;
+                    if(vm.clusterData){
+                        vm.volOverviewData = vm.clusterData.sds_det.volume_status_wise_counts;
+                        vm.brickOverviewData = vm.clusterData.sds_det.brick_status_wise_counts;
+                    }
                     return dashboardStore.getClusterDashboardUtilizationList(clusterId, "cluster", "utilization")
                 })
                 .then(function(chartData) {

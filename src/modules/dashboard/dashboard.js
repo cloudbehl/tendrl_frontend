@@ -32,15 +32,11 @@
             utils.getDashboardData("ceph", false)
                 .then(function(data) {
                     $interval.cancel(dashboardTimer);
-                    vm.cephCluster = data;
+                    vm.cephCluster =  data;
                     return utils.getDashboardData("ceph", "cluster", "utilization");
                 })
                 .then(function(data) {
-                    if(data.length) {
-                        vm.chartData = data[0].datapoints;
-                    } else {
-                        vm.chartData = [];
-                    }
+                    vm.chartData = data && data[0].datapoints ? data[0].datapoints : [];
                     return eventStore.getAlertList();
                 })
                 .then(function(alertData) {
@@ -56,16 +52,14 @@
                 .then(function(data) {
                     $interval.cancel(dashboardTimer);
                     vm.glusterCluster = data;
-                    vm.volOverviewData = vm.glusterCluster.sds_det.most_used_volumes;
-                    vm.brickOverviewData = vm.glusterCluster.sds_det.most_used_bricks;
+                    if(typeof vm.glusterCluster !== "undefined"){
+                        vm.volOverviewData = vm.glusterCluster.sds_det.most_used_volumes;
+                        vm.brickOverviewData = vm.glusterCluster.sds_det.most_used_bricks;
+                    }
                     return utils.getDashboardData("gluster", "cluster", "utilization");
                 })
                 .then(function(data) {
-                    if (data && data[0] && data[0].datapoints) {
-                        vm.chartData = data[0].datapoints;
-                    } else {
-                        vm.chartData = [];
-                    }
+                    vm.chartData = data && data[0].datapoints ? data[0].datapoints : [];
                     return eventStore.getAlertList();
                 })
                 .then(function(alertData) {
