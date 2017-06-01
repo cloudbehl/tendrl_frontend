@@ -102,9 +102,9 @@
                 request;
 
             if (utilization) {
-                url = config.baseUrl + "monitoring/system/" + clusterType + "/utilization";
+                url = config.baseUrl + "monitoring/system/" + clusterType + "/utilization" + "?interval=-6h";
             } else {
-                url = config.baseUrl + "monitoring/system/" + clusterType;
+                url = config.baseUrl + "monitoring/system/" + clusterType + "?interval=-6h";
             }
 
             getDashboardRequest = {
@@ -615,11 +615,11 @@
         vm.getClusterDashboardList = function(id, componentType, type) {
             var url, getClusterDashboardListRequest, request;
             if (type === "public_network" || type === "cluster_network") {
-                url = config.baseUrl + "monitoring/" + componentType + "/" + id + "/throughput?type=" + type;
+                url = config.baseUrl + "monitoring/" + componentType + "/" + id + "/throughput?type=" + type + "&interval=-6h";
             } else if (type) {
-                url = config.baseUrl + "monitoring/" + componentType + "/" + id + "/" + type;
+                url = config.baseUrl + "monitoring/" + componentType + "/" + id + "/" + type + "?interval=-6h";
             } else {
-                url = config.baseUrl + "monitoring/" + componentType + "/" + id;
+                url = config.baseUrl + "monitoring/" + componentType + "/" + id + "?interval=-6h";
             }
 
             getClusterDashboardListRequest = {
@@ -637,11 +637,11 @@
             });
         };
 
-        vm.getVolumeCreationMapping = function() {
+        vm.ClusterIOPS = function(cluster_id, timeInterval) {
             var url = "",
                 getObjectListRequest, request;
 
-            url = "/api/VolumeCreationMapping.json";
+            url = config.baseUrl + "monitoring/clusters/iops?cluster_ids=" + cluster_id + "&interval=" + timeInterval;
 
             getObjectListRequest = {
                 method: "GET",
@@ -653,8 +653,8 @@
                 return response.data;
             }, function(e) {
                 vm.checkErrorCode(e);
-                console.log("Error Occurred: while fetching VolumeCreationMapping");
-                throw e;
+                console.log("Error Occurred: while fetching Cluster IOPS");
+                return null;
             });
         };
 
