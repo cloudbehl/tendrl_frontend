@@ -118,6 +118,7 @@
             }, function(e) {
                 vm.checkErrorCode(e);
                 console.log("Error Occurred: while fetching getDashboardRequest");
+                return null;
             });
         }
 
