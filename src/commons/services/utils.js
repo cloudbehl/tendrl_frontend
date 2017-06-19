@@ -79,7 +79,6 @@
                 getObjectListRequest, request;
 
             url = config.baseUrl + "Get" + objectType + "List";
-            //url = "/api/GetClusterList.json";
 
             getObjectListRequest = {
                 method: "GET",
@@ -677,7 +676,26 @@
             }, function(e) {
                 vm.checkErrorCode(e);
             });
-        }
+        };
+
+        vm.glusterBrickMapping = function(data, cluster) {
+            var url, actionRequest, request;
+
+            url = config.baseUrl + cluster.cluster_id + "/GlusterGenerateBrickMapping";
+
+            actionRequest = {
+                method: "POST",
+                url: url,
+                data: data
+            };
+            request = angular.copy(actionRequest);
+
+            return $http(request).then(function(response) {
+                return response.data;
+            }, function(e) {
+                vm.checkErrorCode(e);
+            });
+        };
 
     };
 })();
