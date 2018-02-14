@@ -109,10 +109,11 @@
                 placeholder: "",
                 filterType: ""
             }],
-            resultsCount: vm.filteredClusterList.length,
-            totalCount: vm.clusterList.length,
             appliedFilters: [],
-            onFilterChange: filterChange
+            onFilterChange: filterChange,
+            showTotalCountResults: true,
+            itemsLabel: "Cluster",
+            itemsLabelPlural: "Clusters"
         };
 
         vm.sortConfig = {
@@ -163,6 +164,7 @@
                     vm.clusterList = data;
                     vm.filteredClusterList = vm.clusterList;
                     vm.filterConfig.resultsCount = vm.filteredClusterList.length;
+                    vm.filterConfig.totalCount = vm.clusterList.length;
                     _sortChange(vm.sortConfig.currentField.id, vm.sortConfig.isAscending);
                     startTimer();
                 }).catch(function(e) {

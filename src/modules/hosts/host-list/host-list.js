@@ -46,8 +46,8 @@
             if (filter.id === 'name') {
                 match = item.name.match(re) !== null;
             } else if (filter.id === 'status') {
-        match = item.status === filter.value.id || item.status === filter.value;
-      }
+                match = item.status === filter.value.id || item.status === filter.value;
+            }
             return match;
         };
 
@@ -69,7 +69,7 @@
                 vm.hostList.forEach(function(item) {
                     if (matchesFilters(item, filters)) {
                         vm.filteredHostList.push(item);
-                    } 
+                    }
                 });
             } else {
                 vm.filteredHostList = vm.hostList;
@@ -105,13 +105,15 @@
                 title: "Status",
                 placeholder: "Filter by Status",
                 filterType: "select",
-                filterValues: ["UP","DOWN"]
+                filterValues: ["UP", "DOWN"]
             }],
-            resultsCount: vm.filteredHostList.length,
-            totalCount: vm.hostList.length,
             appliedFilters: [],
-            onFilterChange: filterChange
+            onFilterChange: filterChange,
+            showTotalCountResults: true,
+            itemsLabel: "Host",
+            itemsLabelPlural: "Hosts"
         };
+
 
         init();
 
@@ -131,6 +133,7 @@
                     vm.hostList = list;
                     vm.filteredHostList = vm.hostList;
                     vm.filterConfig.resultsCount = vm.filteredHostList.length;
+                    vm.filterConfig.totalCount = vm.hostList.length;
                     _sortChange(vm.sortConfig.currentField.id, vm.sortConfig.isAscending);
                     startTimer();
                 }).catch(function(e) {
@@ -187,11 +190,6 @@
         function addTooltip($event) {
             vm.flag = utils.tooltip($event);
         }
-
-/*        function clearAllFilters() {
-            vm.searchBy = {};
-            vm.filterBy = "name";
-        }*/
     }
 
 })();
