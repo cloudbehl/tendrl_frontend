@@ -1,6 +1,6 @@
 # UI [![Build Status](https://travis-ci.org/Tendrl/ui.svg?branch=master)](https://travis-ci.org/Tendrl/ui) [![Dependency Status](https://david-dm.org/Tendrl/ui.svg)](https://david-dm.org/Tendrl/ui) [![Issue Stats](http://issuestats.com/github/Tendrl/ui/badge/pr?style=flat)](http://issuestats.com/github/Tendrl/ui)
 
-UI is a graphical user interface for [Tendrl](https://github.com/Tendrl), a modern, extensible web-based storage management platform, using RESTFul API to communicate with Tendrl API server.
+tendrlUI is a graphical user interface for [Tendrl](https://github.com/Tendrl), a modern, extensible web-based storage management platform, using RESTFul API to communicate with Tendrl API server.
 
 # UI: Development #
 
